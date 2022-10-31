@@ -14,11 +14,11 @@ $this->breadcrumbs = [
 <div class="row">
 	<?php
 	if (!empty($updates)) {
-		foreach ($updates as $item) {
+		for($x=0; $x < 5; $x++) {
 			?>
 			<div class="col-md-12 update">
-				<h3><a href="<?= $item->link ?>" target="_blank"><?= $item->title ?></a></h3>
-				<p><?= $item->description ?></p>
+				<h3><a href="<?= $updates->link ?>" target="_blank"><?= $updates->title ?></a></h3>
+				<p><?= $updates->description ?></p>
 			</div>
 			<?php
 		}

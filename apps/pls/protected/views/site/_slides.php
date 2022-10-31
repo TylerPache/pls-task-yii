@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var SiteController $this
+ * @var LoginForm      $model
+ */
+$updates = $this->slideUpdates();
+$blog    = $this->slideBlog();
+?>
 <div id="slides" class="swiper" aria-live="polite">
 	<div class="swiper-wrapper">
 		<div class="swiper-slide">
@@ -27,42 +35,23 @@
 			<div class="overlay"></div>
 			<div class="content">
 				<i class="fal fa-comment-alt-edit"></i>
-				<h3>SuperEval’s latest products updates include:</h3>
-				<div class="row is-flex">
-					<div class="col-md-6">
-						<div class="bubble">1. Show evaluator's previous evaluation data.</div>
-					</div>
-					<div class="col-md-6">
-						<div class="bubble">2. Added consolidated data view with highest rated, lowest rated, etc.
-							to all roles.
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="bubble">3. Added competency preview links to consolidated review table.
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="bubble">4. Send survey email to evaluatee on signature; show evaluator survey
-							dialog on signature.
-						</div>
-					</div>
-				</div>
+                <?php
+                    echo "<h3>".$updates->title."</h3>";
+                    echo "<div class='row is-flex'>".$updates->description."</div>";
+
+                ?>
 				<a href="https://supereval.com/blog/supereval-recent-platform-updates" target="_blank"
-				   class="btn btn-primary">Read
-					More</a>
+				   class="btn btn-primary">Read More</a>
 			</div>
 		</div>
 		<div class="swiper-slide">
 			<div class="overlay"></div>
 			<div class="content">
-				<i class="fal fa-comment-alt-lines"></i>
-				<h3>Six Benefits of Having an Open Communication System with Teachers and School Staff</h3>
-				<div class="row">
-					<div class="col-md-12 bubble">
-						This communication system has a number of perks. Here are six ways your school district may be
-						able to benefit from it.
-					</div>
-				</div>
+                <i class="fal fa-comment-alt-lines"></i>
+                <?php
+                    echo "<h3>".$blog->title."</h3>";
+                    echo "<div class='row'>".$blog->description."</div>";
+                ?>
 				<a href="https://supereval.com/blog/open-communication-system" target="_blank" class="btn btn-primary">Read
 					Our Blog</a>
 			</div>

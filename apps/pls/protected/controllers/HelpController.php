@@ -106,15 +106,15 @@ class HelpController extends Controller {
 		Feed::$userAgent = Yii::app()->params['curlUserAgent'];
 		Feed::$cacheDir = Yii::app()->params['latestUpdatesFeedCacheDir'];
 		Feed::$cacheExpire = Yii::app()->params['latestUpdatesFeedCacheExp'];
-		$feed = Feed::loadRss(Yii::app()->params['latestUpdatesFeedUrl']);
+		$feed = simplexml_load_file(Yii::app()->params['latestUpdatesFeedUrl']);
 		$items = [];
 		if (!empty($feed)) {
-			foreach ($feed->item as $item) {
+			foreach ($feed->channel->item as $item) {
 				$more = ' <a href="' . $item->link . '" target="_blank">Read more</a>';
 				$item->description = trim(str_replace(' [&#8230;]', '...' . $more, $item->description));
 				$item->description = preg_replace('/The post.*appeared first on .*\./', '', $item->description);
 			}
-			$items = $feed->item;
+			$items = $feed->channel->item;
 		}
 		$this->render('updates', ['updates' => $items]);
 	}
