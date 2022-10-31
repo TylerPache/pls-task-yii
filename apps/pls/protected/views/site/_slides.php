@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var SiteController $this
+ * @var LoginForm      $model
+ */
+$updates = $this->slideUpdates();
+?>
 <div id="slides" class="swiper" aria-live="polite">
 	<div class="swiper-wrapper">
 		<div class="swiper-slide">
@@ -27,7 +34,12 @@
 			<div class="overlay"></div>
 			<div class="content">
 				<i class="fal fa-comment-alt-edit"></i>
-				<h3>SuperEval’s latest products updates include:</h3>
+                <?php
+                    echo "<h3>".$updates->title."</h3>";
+                    echo "<div class='row is-flex'>".$updates->description."</div>";
+
+                ?>
+				<!--<h3>SuperEval’s latest products updates include:</h3>
 				<div class="row is-flex">
 					<div class="col-md-6">
 						<div class="bubble">1. Show evaluator's previous evaluation data.</div>
@@ -46,10 +58,9 @@
 							dialog on signature.
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<a href="https://supereval.com/blog/supereval-recent-platform-updates" target="_blank"
-				   class="btn btn-primary">Read
-					More</a>
+				   class="btn btn-primary">Read More</a>
 			</div>
 		</div>
 		<div class="swiper-slide">
