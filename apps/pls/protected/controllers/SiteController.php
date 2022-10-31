@@ -111,17 +111,34 @@ class SiteController extends Controller {
 		}
 	}
 
+    /**
+     * Provides the most recent product update from the feed
+     * @return array|SimpleXMLElement
+     */
     public function slideUpdates(){
         Feed::$userAgent = Yii::app()->params['curlUserAgent'];
         Feed::$cacheDir = Yii::app()->params['latestUpdatesFeedCacheDir'];
         Feed::$cacheExpire = Yii::app()->params['latestUpdatesFeedCacheExp'];
         $feed = simplexml_load_file(Yii::app()->params['latestUpdatesFeedUrl']);
         $items = [];
-/*        function date_compare($first, $second){
-            $time1 = strtotime($first['pubDate']);
-            $time2 = strtotime($second['pubDate']);
-            return $time1 - $time2;
-        }*/
+        if (!empty($feed)) {
+            foreach ($feed->channel->item as $item) {
+                $items = $feed->channel->item;
+            }
+        }
+        return($items);
+    }
+
+    /**
+     * Provides the most recent blog post from the feed
+     * @return array|SimpleXMLElement
+     */
+    public function slideBlog(){
+        Feed::$userAgent = Yii::app()->params['curlUserAgent'];
+        Feed::$cacheDir = Yii::app()->params['latestUpdatesFeedCacheDir'];
+        Feed::$cacheExpire = Yii::app()->params['latestUpdatesFeedCacheExp'];
+        $feed = simplexml_load_file(Yii::app()->params['blogPostFeed']);
+        $items = [];
         if (!empty($feed)) {
             foreach ($feed->channel->item as $item) {
                 $items = $feed->channel->item;
